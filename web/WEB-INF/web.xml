@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>LoiServer</servlet-name>
+        <servlet-class>LoiServer</servlet-class>
+        <load-on-startup>10</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoiServer</servlet-name>
+        <url-pattern>/loi</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet>-->
+        <!--<servlet-name>MyServlet</servlet-name>-->
+        <!--<servlet-class>MyServlet</servlet-class>-->
+        <!--<load-on-startup>10</load-on-startup>-->
+    <!--</servlet>-->
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>MyServlet</servlet-name>-->
+        <!--<url-pattern>/my</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+
+
+</web-app>
+
+    
