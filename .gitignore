@@ -2,4 +2,4 @@
 build/
 /out
 /.idea
-
+/web/WEB-INF/lib/
