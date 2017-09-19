@@ -1,6 +1,7 @@
 package sqlOperate;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class SelectToDb {
@@ -9,8 +10,9 @@ public class SelectToDb {
     private final static String PASS = "000";
     private final static String DB_NAME = "LoiWithWifi";
     private final static String TABLE_NAME = "test_data";
+    private String[] selectResult = new String[5];
 
-    public String selectSql(int testId) {
+    public String[] selectSql(int testId) {
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -21,23 +23,27 @@ public class SelectToDb {
         }
         String material = null;
         float LOI;
-        String date_source_from;
+        String dataSourceFrom;
 
         Connection conn;
         Statement stmt;
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM " + DB_NAME + "." + TABLE_NAME + " WHERE test_id=" + testId;
+            String sql = "SELECT * FROM " + DB_NAME + "." + TABLE_NAME + " WHERE testId=" + testId;
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 material = rs.getString("material");
                 LOI = rs.getFloat("LOI");
-                date_source_from = rs.getString("date_source_from");
-                System.out.println("material:"+material);
-                System.out.println("LOI:"+LOI);
-                System.out.println("date_source_from:"+date_source_from);
+                dataSourceFrom = rs.getString("dataSourceFrom");
+//                System.out.println("material:"+material);
+//                System.out.println("LOI:"+LOI);
+//                System.out.println("dataSourceFrom:"+dataSourceFrom);
+                selectResult[0] = String.valueOf(testId);
+                selectResult[1] = material;
+                selectResult[2] = String.valueOf(LOI);
+                selectResult[3] = dataSourceFrom;
             }
             rs.close();
             stmt.close();
@@ -45,6 +51,6 @@ public class SelectToDb {
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return material;
+        return selectResult;
     }
 }

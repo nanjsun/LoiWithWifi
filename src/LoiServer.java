@@ -23,47 +23,42 @@ public class LoiServer extends HttpServlet {
         throws IOException, ServletException {
         String material = null;
         float LOI = 0;
-        String data_source_from = null;
+        String dataSourceFrom = null;
         String method = null;
         int testId = 0;
         material = request.getParameter("material");
-        data_source_from = request.getParameter("data_source_from");
+        dataSourceFrom = request.getParameter("dataSourceFrom");
+        String[] selectResult = new String[5];
 
         try {
             testId = Integer.valueOf(request.getParameter("testId"));
         } catch (NumberFormatException e) {
             e.printStackTrace();
             testId = 999;
-//            System.out.println("Please input teseId in format of testId=xx");
         }
         ;
         method = request.getParameter("method");
         PrintWriter writer = response.getWriter();
         response.setStatus(200);
         response.setContentType("/text/html");
-        writer.print("/n method:-->"+method + testId +material + data_source_from);
         switch (method) {
             case "select":
                 SelectToDb db = new SelectToDb();
-                material = db.selectSql(testId);
-                if(testId != 0){
-                    writer.print(testId+"\n");
-                    writer.print(material);
-                }
-                else {
-                    writer.print("select---->Wrong testId!");
-                }
+                selectResult = db.selectSql(testId);
+                material = selectResult[1];
+
+                writer.print(selectResult[0]+ ":" +selectResult[1]+ ":" + selectResult[2]+ ":"+selectResult[3]);
                 break;
             case "insert":
                 InsertToDb insertDb = new InsertToDb();
                 material = request.getParameter("material");
                 LOI = Float.parseFloat(request.getParameter("LOI"));
-                data_source_from = request.getParameter("data_source_from");
-                int insertResult = insertDb.insertSql(testId, material, LOI, data_source_from);
+                dataSourceFrom = request.getParameter("dataSourceFrom");
+                int insertResult = insertDb.insertSql(testId, material, LOI, dataSourceFrom);
                 writer.print(String.valueOf(insertResult));
                 break;
             default:
-                writer.print("\n method-->Wrong parameter!");
+                writer.print("\n -->Wrong method!");
                 break;
         }
     }

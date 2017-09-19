@@ -10,7 +10,7 @@ public class InsertToDb {
     private final static String DB_NAME = "LoiWithWifi";
     private final static String TABLE_NAME = "test_data";
 
-    public int insertSql(int testId, String material, Float LOI, String data_source_from) {
+    public int insertSql(int testId, String material, Float LOI, String dataSourceFrom) {
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -26,8 +26,8 @@ public class InsertToDb {
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
-            String sql = "INSERT INTO `LoiWithWifi`.`test_data` (`test_id`, `material`, `LOI`, `date_source_from`) VALUES ('" +
-                    testId + "', '" + material + "', '" + LOI + "', '" + data_source_from + "')";
+            String sql = "INSERT INTO `LoiWithWifi`.`test_data` (`testId`, `material`, `LOI`, `dataSourceFrom`) VALUES ('" +
+                    testId + "', '" + material + "', '" + LOI + "', '" + dataSourceFrom + "')";
 
             System.out.println(sql);
             rs = stmt.executeUpdate(sql);
