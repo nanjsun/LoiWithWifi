@@ -1,0 +1,2 @@
+http://localhost:8080/loi?method=select&testId=1&LOI=11&material=oil&data_source_from=seu5
+http://localhost:8080/loi?method=insert&testId=6&LOI=13&material=oil&data_source_from=seu6
